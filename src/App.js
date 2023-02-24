@@ -29,9 +29,14 @@ function App() {
     },
   ];
 
+  const submitExpenseHandler = (expense) => {
+    console.log("From App.js");
+    console.log(expense)
+  }
+
   return (
     <div>
-    <NewExpense/>
+    <NewExpense onSubmitExpense={submitExpenseHandler}/>
     <ExpenseAligner expenses={expenses}/>
     </div>
   );

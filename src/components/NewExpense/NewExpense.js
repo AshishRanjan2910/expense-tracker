@@ -3,10 +3,18 @@ import './NewExpense.css'
 import ExpenseForm from './ExpenseForm'
 
 
-export default function NewExpense () {
+export default function NewExpense (props) {
+  const expenseSubmitHandler = (newExpense) => {
+    const expense = {
+      ...newExpense,
+      id: Math.random().toString()
+    }
+    props.onSubmitExpense(expense)
+  }
+
   return (
     <div className="new-expense">
-      <ExpenseForm/>
+      <ExpenseForm onExpenseSubmit={expenseSubmitHandler}/>
     </div>
   )
 }
