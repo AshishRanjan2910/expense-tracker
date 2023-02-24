@@ -3,8 +3,8 @@ import ExpenseItem from "./ExpenseItem";
 import "./Expenses.css"
 
 export default function ExpenseAligner(props) {
-    const expenses = props.expenses;
-    return (
+  const expenses = props.expenses;
+  return (
     <Card className="expenses">
       <ExpenseItem
         title={expenses[0].title}
@@ -27,5 +27,5 @@ export default function ExpenseAligner(props) {
         date={expenses[3].date}
       />
     </Card>
-    )
+  )
 }

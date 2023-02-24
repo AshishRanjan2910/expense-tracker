@@ -1,5 +1,4 @@
 .new-expense__controls {
-    position: relative;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
@@ -23,8 +22,5 @@
   }
   
   .new-expense__actions {
-    position: absolute;
-    bottom: 0;
-    right: 0;
     text-align: right;
   }
