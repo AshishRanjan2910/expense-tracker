@@ -1,11 +1,21 @@
+import React, { useState } from "react";
 import Card from "../UI/Card";
 import ExpenseItem from "./ExpenseItem";
-import "./Expenses.css"
+import ExpensesFilter from "./ExpensesFilter";
+import "./Expenses.css";
 
 export default function ExpenseAligner(props) {
   const expenses = props.expenses;
+  const [filteredYear, setFilteredYear] = useState("2019")
+
+  const yearSelectHandler = (selectedYear) => {
+    console.log(selectedYear);
+    setFilteredYear(selectedYear);
+  };
+
   return (
     <Card className="expenses">
+      <ExpensesFilter yearSelected={filteredYear} onYearSelect={yearSelectHandler} />
       <ExpenseItem
         title={expenses[0].title}
         amount={expenses[0].amount}
@@ -27,5 +37,5 @@ export default function ExpenseAligner(props) {
         date={expenses[3].date}
       />
     </Card>
-  )
+  );
 }
