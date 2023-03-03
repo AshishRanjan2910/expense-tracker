@@ -13,8 +13,21 @@ export default function ExpenseAligner(props) {
   };
 
   const filteredExpenses = expenses.filter((expense) => {
-    return expense.date.getFullYear().toString() === filteredYear
+    return expense.date.getFullYear().toString() === filteredYear;
   });
+
+  let expenseContent = <p>Crap:/ No expenses found.</p>;
+
+  if (filteredExpenses.length > 0) {
+    expenseContent = filteredExpenses.map((expense) => (
+      <ExpenseItem
+        key={expense.id}
+        title={expense.title}
+        amount={expense.amount}
+        date={expense.date}
+      />
+    ));
+  }
 
   return (
     <Card className="expenses">
@@ -22,15 +35,7 @@ export default function ExpenseAligner(props) {
         yearSelected={filteredYear}
         onYearSelect={yearSelectHandler}
       />
-      {filteredExpenses
-        .map((expense) => (
-          <ExpenseItem
-            key={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />
-        ))}
+      {expenseContent}
     </Card>
   );
 }
