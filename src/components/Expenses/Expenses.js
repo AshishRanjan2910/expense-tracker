@@ -12,16 +12,17 @@ export default function ExpenseAligner(props) {
     setFilteredYear(selectedYear);
   };
 
+  const filteredExpenses = expenses.filter((expense) => {
+    return expense.date.getFullYear().toString() === filteredYear
+  });
+
   return (
     <Card className="expenses">
       <ExpensesFilter
         yearSelected={filteredYear}
         onYearSelect={yearSelectHandler}
       />
-      {expenses
-        .filter((expense) => {
-          return expense.date.getFullYear() === parseInt(filteredYear)
-        })
+      {filteredExpenses
         .map((expense) => (
           <ExpenseItem
             key={expense.id}
