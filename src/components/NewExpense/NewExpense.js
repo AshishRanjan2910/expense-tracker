@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import './NewExpense.css'
 import ExpenseForm from './ExpenseForm'
 
 
 export default function NewExpense (props) {
+  const [editFlag, setEditFlag] = useState(false)
+
   const expenseSubmitHandler = (newExpense) => {
     const expense = {
       ...newExpense,
@@ -12,9 +14,18 @@ export default function NewExpense (props) {
     props.onSubmitExpense(expense)
   }
 
+  const editHandler = () => {
+    setEditFlag(true)
+  }
+
+  const cancelHandler = () => {
+    setEditFlag(false)
+  }
+
   return (
     <div className="new-expense">
-      <ExpenseForm onExpenseSubmit={expenseSubmitHandler}/>
+      {!editFlag && <button onClick={editHandler}>Add an expense.</button>}
+      {editFlag && <ExpenseForm onExpenseSubmit={expenseSubmitHandler} onCancel={cancelHandler}/>}
     </div>
   )
 }
